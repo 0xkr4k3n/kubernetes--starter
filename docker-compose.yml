@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context:  ./url-shortening-service
+    container_name: backend
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+  front-end:
+    build: 
+      context: ./front-end
+    container_name: front-end
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver : bridge
