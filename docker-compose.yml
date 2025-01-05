@@ -1,23 +1,51 @@
-version: '3.8'
+version: "3.8"
 
 services:
-  backend:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: url_db
+      MYSQL_USER: urluser
+      MYSQL_PASSWORD: urlpass
+    ports:
+      - "3307:3306"
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -p$${MYSQL_ROOT_PASSWORD} || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    networks:
+      - app-network
+
+  backend-micro-short:
     build:
-      context:  ./url-shortening-service
-    container_name: backend
+      context: ./url-shortening-service
+    depends_on:
+      db:
+        condition: service_healthy
     ports:
       - "5000:5000"
+    networks:
+      - app-network
+  backend-micro-redirect:
+    build:
+      context: ./url-redirecting-service
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
     networks:
       - app-network
   front-end:
     build: 
       context: ./front-end
-    container_name: front-end
+    depends_on:
+      - backend-micro-short
     ports:
       - "80:80"
-    networks:
-      - app-network
 
 networks:
   app-network:
-    driver : bridge
+    driver: bridge

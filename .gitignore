@@ -1,0 +1,12 @@
+# Python
+*.pyc
+*.pyo
+__pycache__/
+
+# Docker
+**/node_modules/
+**/docker-compose.override.yml
+
+# Other
+*.db
+*.log

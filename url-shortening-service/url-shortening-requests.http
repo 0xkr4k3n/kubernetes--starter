@@ -1,0 +1,7 @@
+
+POST http://172.23.0.3:5000/shorten
+Content-Type: application/json
+
+{
+  "longUrl": "https://youneszendour.com"
+}

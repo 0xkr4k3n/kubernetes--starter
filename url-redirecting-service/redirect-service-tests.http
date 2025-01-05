@@ -1,0 +1,7 @@
+### 1. Test an Existing Short Code
+# Assumes you have a record in your MySQL DB where short_url = "abc123"
+GET http://localhost:3000
+
+###
+### 2. Test a Non-Existent Short Code
+GET http://localhost:3000/4eedf2
