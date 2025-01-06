@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: shortening-ingress
+spec:
+  rules:
+  - host: krak-url.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/shorten"
+        backend:
+          service:
+            name: backend-micro-short
+            port: 
+              number: 5000
