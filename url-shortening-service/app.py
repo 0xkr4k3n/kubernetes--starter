@@ -6,7 +6,7 @@ import hashlib
 app = Flask(__name__)
 
 # IMPORTANT: Use port 3306 internally (the container's MySQL port) 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://urluser:urlpass@db:3306/url_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://urluser:urlpass@url-db:3306/url_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)

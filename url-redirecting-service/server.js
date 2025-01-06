@@ -7,7 +7,7 @@ const PORT = 3000; // or any port you prefer
 
 // 1. Create a MySQL connection pool (recommended for production)
 const pool = mysql.createPool({
-  host: 'db',              // Docker Compose service name, if running in Docker
+  host: 'url-db',              // Docker Compose service name, if running in Docker
   user: 'urluser',         // match the user in your MySQL environment
   password: 'urlpass',     // match the password in your MySQL environment
   database: 'url_db',      // the database name

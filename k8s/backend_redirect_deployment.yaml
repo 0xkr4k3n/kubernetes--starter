@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-micro-redirect
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-micro-redirect
+  template:
+    metadata:
+      labels:
+        app: backend-micro-redirect
+    spec:
+      containers:
+      - name: backend-redirect
+        image: kraken636/url-redirect-micro:v1
+        ports:
+        - containerPort: 3000

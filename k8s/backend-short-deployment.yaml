@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-micro-short
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-micro-short
+  template:
+    metadata:
+      labels:
+        app: backend-micro-short
+    spec:
+      containers:
+      - name: backend-short
+        image: kraken636/url-short-micro:v1
+        ports:
+        - containerPort: 5000
